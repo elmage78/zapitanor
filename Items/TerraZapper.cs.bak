@@ -1,0 +1,107 @@
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using rail;
+using ReLogic.Content;
+using System;
+//using System.Numerics;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.Graphics.Effects;
+using Terraria.Graphics.Shaders;
+using Terraria.ID;
+using Terraria.ModLoader;
+using zapitanor.Content.Projectiles;
+
+namespace zapitanor.Items
+{
+	static class AltUse
+	{
+		public static int Alt;
+        public static int Omega;
+	}
+	public class TerraZapper : ModItem
+	{
+        public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Terra Zapper"); // By default, capitalization in classnames will add spaces to the display name. You can customize the display name here by uncommenting Projectile line.
+			Tooltip.SetDefault("Forged frome true RNG it's power is beneath mortals and only controled by RNGjesus");
+		}
+        public override void SetDefaults()
+		{
+			Item.damage = 1;
+			Item.width = 11;
+			Item.height = 5;
+			Item.DamageType = DamageClass.Magic;
+			Item.useTime = 55;
+			Item.useAnimation = 55;
+			Item.useStyle = ItemUseStyleID.Shoot;
+			Item.noMelee = true;
+			Item.knockBack = 1.8f;
+			Item.mana = 35;
+			Item.value = 100;
+			Item.rare = ItemRarityID.Blue;
+			Item.UseSound = SoundID.Item12;
+			Item.autoReuse = true;
+			Item.shoot = ModContent.ProjectileType<TerraShot>();
+			Item.shootSpeed = 8f;
+		}
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            if (AltUse.Omega == 1)
+            {
+                Vector2 Mouse = Main.MouseWorld;
+                float XRet = Mouse.X - player.position.X;
+                float YRet = Mouse.Y - player.position.Y;
+                Vector2 Retroceso = new Vector2(XRet, YRet);
+                Retroceso.Normalize();
+                player.velocity = -Retroceso * 20f*4f;
+            }
+            return true;
+        }
+        public override bool AltFunctionUse(Player player) 
+        {
+            if (Main.rand.Next(1) == 0)
+            {
+                AltUse.Omega = 1;
+            }
+            AltUse.Alt = 1;
+            return false;
+        }
+        public override Vector2? HoldoutOffset()
+        {
+            return new Vector2(-8,0);
+        }
+        public override void UpdateInventory(Player player)
+        {
+            if (AltUse.Omega == 1)
+            {
+                for (int i = 0; i < 110; i++)
+                {
+                    player.velocity = Vector2.Zero;
+                    player.immune = true;
+                    player.position = player.oldPosition;
+                    if (i == 110)
+                    {
+                        player.immune = false;
+                        AltUse.Omega = 1;
+                    }
+                }
+            }
+        }
+        public override void AddRecipes()
+        {
+            Recipe recipe = CreateRecipe();
+            recipe.AddIngredient(ItemID.BrokenHeroSword, 1);
+            recipe.AddIngredient(ModContent.ItemType<Coherent>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<Shzappy>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<The_Shower>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<Grenadier>(), 1);
+            if (ModLoader.TryGetMod("CalamityMod", out Mod exampleMod) && exampleMod.TryFind("Lumenyl", out ModItem Dustitem))
+            {
+                recipe.AddIngredient(Dustitem.Type, 8);
+            }
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+        }
+    }
+}

@@ -1,0 +1,17 @@
+zapitanor_variants it adds zapinator variats to your game although it is still in development it will have more weapons
+---------------------------------
+THE GAMES BALANCE BROKEN IN HALF
+---------------------------------
+-Adds 7 zapinators as of now
+	-Wooden zapinator
+	-Frozen zapinator
+	-Molten zapinator
+	-Shzappy (Shotgun-like Zapinator)
+	-Coherent
+	-THE SHOWER
+	-Grenadier
++1 debug guns
+
+MORE TO COME
+
+Still balancing

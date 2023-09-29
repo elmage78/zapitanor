@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\tModLoader.targets" />
+  <PropertyGroup>
+    <AssemblyName>zapitanor</AssemblyName>
+    <TargetFramework>net6.0</TargetFramework>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Content\Projectiles\NewFolder\**" />
+    <EmbeddedResource Remove="Content\Projectiles\NewFolder\**" />
+    <None Remove="Content\Projectiles\NewFolder\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="tModLoader.CodeAssist" Version="0.1.5" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\Musics\" />
+    <Folder Include="Assets\Sounds\" />
+    <Folder Include="Common\" />
+    <Folder Include="Content\Dusts\" />
+    <Folder Include="Localisation\" />
+  </ItemGroup>
+</Project>

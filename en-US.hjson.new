@@ -1,0 +1,57 @@
+
+Mods: {
+	zapitanor: {
+		Projectiles: {
+			CoherentShot.DisplayName: Coherent Shot
+			Galaxy.DisplayName: Galaxy
+			GrenadeMod.DisplayName: Grenade Mod
+			LaserProjectile.DisplayName: Laser Projectile
+			ShotgunZapinator.DisplayName: Shotgun Zapinator
+			ShowerShot.DisplayName: Shower Shot
+			TerraShot.DisplayName: Terra Shot
+			ZapinatorChanged.DisplayName: Zapinator Changed
+		}
+
+		Items: {
+			Coherent: {
+				DisplayName: Coherent
+				Tooltip: This gun makes the games balance tremble
+			}
+
+			Frozen_zappy: {
+				DisplayName: Frozen zapinator
+				Tooltip: This gun makes the games balance tremble
+			}
+
+			Grenadier: {
+				DisplayName: Grenadier
+				Tooltip: This grenade pouch makes the games balance tremble
+			}
+
+			Molten_gun: {
+				DisplayName: Molten gun
+				Tooltip: This gun makes the games balance tremble
+			}
+
+			Shzappy: {
+				DisplayName: Shzappy
+				Tooltip: This gun makes the games balance tremble
+			}
+
+			TerraZapper: {
+				DisplayName: Terra Zapper
+				Tooltip: Forged frome true RNG it's power is beneath mortals and only controled by RNGjesus
+			}
+
+			The_Shower: {
+				DisplayName: The Shower
+				Tooltip: This gun makes the games balance tremble
+			}
+
+			wooden_zapinator: {
+				DisplayName: Wooden Zapinator
+				Tooltip: This gun makes the games balance tremble
+			}
+		}
+	}
+}

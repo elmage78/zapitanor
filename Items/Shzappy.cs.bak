@@ -1,0 +1,117 @@
+using Microsoft.Xna.Framework;
+using rail;
+using System;
+//using System.Numerics;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
+using zapitanor.Content.Projectiles;
+
+namespace zapitanor.Items
+{
+	public class Shzappy : ModItem
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Shzappy"); // By default, capitalization in classnames will add spaces to the display name. You can customize the display name here by uncommenting Projectile line.
+			Tooltip.SetDefault("This gun makes the games balance tremble");
+		}
+		public override void SetDefaults()
+		{
+			Item.damage = 7;
+			Item.width = 11;
+			Item.height = 5;
+			Item.DamageType = DamageClass.Magic;
+			Item.useTime = 40;
+			Item.useAnimation = 40;
+			Item.useStyle = ItemUseStyleID.Shoot;
+			Item.noMelee = true;
+			Item.knockBack = 0.8f;
+			Item.mana = 45;
+			Item.value = 100000;
+			Item.rare = ItemRarityID.Blue;
+			Item.UseSound = SoundID.Item12;
+			Item.autoReuse = true;
+			Item.shoot = ModContent.ProjectileType<ShotgunZapinator>();
+            Item.shootSpeed = 5f;
+		}
+        public override Vector2? HoldoutOffset()
+        {
+            return new Vector2(6,0);
+        }
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            damage = 14;
+            int tesis = 0;
+            int NumProjectiles = 10; // The humber of projectiles that this gun will shoot.
+            if (Main.rand.Next(2) == 0)
+            {
+                NumProjectiles = 15;
+            }
+            if (Main.rand.Next(5) == 0)
+            {
+                NumProjectiles = 23;
+            }
+            if (Main.rand.Next(30) == 0)
+            {
+                NumProjectiles = 40;
+            }
+            if (Main.rand.Next(100) == 0)
+            {
+                NumProjectiles = 65;
+            }
+            if (Main.rand.Next(10000) == 0)
+            {
+                NumProjectiles = 300;
+            }
+            if (Main.rand.Next(10) == 0)
+            {
+                NumProjectiles *= 2;
+            }
+            if (Main.rand.Next(10) == 0)
+            {
+                NumProjectiles *= 2;
+            }
+            if (Main.rand.Next(15) == 0)
+            {
+                tesis = 1;
+                NumProjectiles *= 2;
+            }
+            if (Main.rand.Next(15) == 0)
+            {
+                tesis = 1;
+            }
+            if (Main.rand.Next(4) == 0)
+            {
+                damage *= 4;
+            }
+            for (int i = 0; i < NumProjectiles; i++)
+            {
+                // Rotate the velocity randomly by 30 degrees at max.
+                Vector2 newVelocity = velocity.RotatedByRandom(MathHelper.ToRadians(15));
+
+                // Decrease velocity randomly for nicer visuals.
+                newVelocity *= 0.5f + Main.rand.NextFloat(0.5f);
+                if (tesis == 1)
+                {
+                   newVelocity = velocity.RotatedByRandom(MathHelper.ToRadians(0));
+                   newVelocity *= 2f + Main.rand.NextFloat(1f) *4f;
+                }
+                // Create a projectile.
+                Projectile.NewProjectileDirect(source, position, newVelocity, ModContent.ProjectileType<ShotgunZapinator>(), damage, 2f, player.whoAmI);
+            }
+            return false;
+        }
+        public override void AddRecipes()
+        {
+            Recipe recipe = CreateRecipe();
+            recipe.AddIngredient(ItemID.Amber, 10);
+            recipe.AddIngredient(ItemID.Bone, 100);
+            recipe.AddIngredient(ItemID.IllegalGunParts, 5);
+            recipe.AddIngredient(ItemID.MeteoriteBar, 30);
+			recipe.AddTile(TileID.Bookcases);
+            recipe.Register();
+        }
+    }
+}

@@ -1,0 +1,3 @@
+displayName = zapinator_variants
+author = elmage78
+version = 0.6
