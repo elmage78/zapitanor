@@ -19,10 +19,10 @@ namespace zapitanor.Content.Dusts
             SpriteEffects effects1 = SpriteEffects.None;
             if (dust.spriteDirection == -1)
             {
-                zero.X = (float)Main.dustTexture[dust.type].Width; 
+          		zero.X = (float)Main.dustTexture[dust.type].Width; 
 				effects1 = SpriteEffects.FlipHorizontally;
             }
-            Main.spriteBatch.Draw(Main.dustTexture[dust.type], new Vector2(dust.position.X - Main.screenPosition.X +   (float)  (dust.width / 2), dust.position.Y - Main.screenPosition.Y + (float)(dust.height / 2) + dust.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(new Microsoft.Xna.Framework.Rectangle(0, 0, Main.dustTexture[dust.type].Width, Main.dustTexture[dust.type].Height)), dust.GetAlpha(lightColor), dust.rotation, zero, dust.scale, effects1, 0.0f);
+            Main.spriteBatch.Draw(Main.dustTexture[dust.type], new Vector2(dust.position.X - Main.sccreenPosition.X +   (float)  (dust.width / 2), dust.position.Y - Main.screenPosition.Y + (float)(dust.height / 2)/* + dust.gfxOffY What is this ???*/), new Microsoft.Xna.Framework.Rectangle?(new Microsoft.Xna.Framework.Rectangle(0, 0, Main.dustTexture[dust.type].Width, Main.dustTexture[dust.type].Height)), dust.GetAlpha(lightColor), dust.rotation, zero, dust.scale, effects1, 0.0f);
 		}
 
         public override bool Update(Dust dust)
@@ -31,7 +31,7 @@ namespace zapitanor.Content.Dusts
             dust.rotation += dust.velocity.X * 0.15f;
             if (dust.velocity.Y == 0)
             {
-                dust.alpha += 1;
+     			dust.alpha += 1;
             }
             return false; // Return false to prevent vanilla behavior.
         }
